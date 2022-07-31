@@ -1,4 +1,4 @@
-module gitlab.com/malleator/prudent
+module github.com/ivakinpavel/prudent
 
 go 1.18
 
