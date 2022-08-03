@@ -35,9 +35,7 @@ func dumpDB(host, dbname, username, password, outputFilePath string) {
 
 func getBackupFileName(prefixes ...string) string {
 	var toJoin []string
-	for _, pref := range prefixes {
-		toJoin = append(toJoin, pref)
-	}
+	toJoin = append(toJoin, prefixes...)
 	toJoin = append(toJoin, time.Now().Format(time.RFC3339)+".gz")
 	return strings.Join(toJoin, "-")
 }
