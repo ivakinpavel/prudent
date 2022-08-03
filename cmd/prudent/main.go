@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/ivakinpavel/prudent/pkg/app"
+	"github.com/ivakinpavel/prudent/pkg/config"
 	log "github.com/sirupsen/logrus"
-	"gitlab.com/malleator/prudent/pkg/app"
-	"gitlab.com/malleator/prudent/pkg/config"
 )
 
 func main() {

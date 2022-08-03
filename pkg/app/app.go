@@ -2,10 +2,10 @@ package app
 
 import (
 	"fmt"
+	"github.com/ivakinpavel/prudent/pkg/config"
+	"github.com/ivakinpavel/prudent/pkg/s3"
+	"github.com/ivakinpavel/prudent/pkg/shell"
 	log "github.com/sirupsen/logrus"
-	"gitlab.com/malleator/prudent/pkg/config"
-	"gitlab.com/malleator/prudent/pkg/s3"
-	"gitlab.com/malleator/prudent/pkg/shell"
 	"os"
 	"strings"
 	"time"
