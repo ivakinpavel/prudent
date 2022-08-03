@@ -1,8 +1,9 @@
-name: Docker
+name: Build and pusher docker image
 
 on:
   workflow_run:
-    workflows: [ Go ]
+    workflows:
+      - "Build and test application"
     types:
       - completed
 
