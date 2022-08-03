@@ -1,8 +1,10 @@
 name: Docker
 
 on:
-  push:
-    branches: [ "*" ]
+  workflow_run:
+    workflows: [ Go ]
+    types:
+      - completed
 
 env:
   REGISTRY: docker.io
