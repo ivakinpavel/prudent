@@ -2,10 +2,8 @@ name: Build and pusher docker image
 
 on:
   workflow_run:
-    workflows:
-      - "Build and test application"
-    types:
-      - completed
+    workflows: ["Build and test application"]
+    types: ["completed"]
 
 env:
   REGISTRY: docker.io
