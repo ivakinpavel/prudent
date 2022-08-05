@@ -52,7 +52,7 @@ jobs:
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
 
-  build_image_and_push:
+  build_and_push_image:
     needs:
       - build_app
       - test_app
