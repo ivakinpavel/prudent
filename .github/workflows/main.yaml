@@ -1,10 +1,8 @@
-name: Build and push docker image
+name: Main
 
 on:
-  workflow_dispatch: {}
-  workflow_run:
-    workflows: ["Build and test application"]
-    types: ["completed"]
+  push:
+    branches: [ "*" ]
 
 env:
   REGISTRY: docker.io
@@ -14,8 +12,49 @@ env:
 
 
 jobs:
-  build_and_push:
+  build_app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: Build
+        run: go build -v ./...
+  test_app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: Test
+        run: go test -coverprofile=coverage.out -covermode=count ./...
+
+  lint_app:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+
+  build_and_push_image:
+    needs:
+      - build_app
+      - test_app
+      - lint_app
     runs-on: ubuntu-latest
     permissions:
       contents: read
