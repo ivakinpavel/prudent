@@ -1,0 +1,43 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    {{- include "prudent.labels" . | nindent 4 }}
+spec:
+  schedule: "{{ .Values.schedule }}"
+  successfulJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          labels:
+            {{- include "prudent.labels" . | nindent 12 }}
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: {{ .Release.Name }}
+            image: {{ .Values.image }}
+            imagePullPolicy: "Always"
+            resources:
+              {{ toYaml .Values.resources| nindent 14  }}
+            env:
+            - name: POSTGRES_HOST
+              value: {{ .Values.postgres.host }}
+            - name: POSTGRES_DB
+              value: {{ .Values.postgres.db }}
+            - name: POSTGRES_USERNAME
+              value: {{ .Values.postgres.username }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.password }}
+            - name: AWS_REGION
+              value: {{ .Values.aws.region }}
+            - name: AWS_BUCKET
+              value: {{ .Values.aws.bucket }}
+            - name: AWS_ACCESS_KEY_ID
+              value: {{ .Values.aws.accessKey }}
+            - name: AWS_SECRET_KEY
+              value: {{ .Values.aws.secretKey }}

@@ -1,0 +1,19 @@
+# Values that are used only to lint and template the chart.
+# The variables have to be specified on install/upgrade.
+
+image: "docker.io/my-user/prudent:1.0.0"
+
+schedule: "* * * * *"
+
+postgres:
+  host: "10.0.0.33"
+  db: "my-db"
+  username: "user1"
+  password: "secret-password"
+
+aws:
+  region: "eu-central-1"
+  bucket: "my-db-backups"
+  accessKey: "AKIAAAAAAAAAAAAAA"
+  secretKey: "aws-secret-key-example"
+
