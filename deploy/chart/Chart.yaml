@@ -1,0 +1,6 @@
+apiVersion: v2
+name: prudent
+description: A Helm chart to deploy prudent backup tool to Kubernetes
+
+type: application
+version: 1.0.0
