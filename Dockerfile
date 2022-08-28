@@ -1,4 +1,4 @@
-FROM golang:1.18-bullseye as builder
+FROM --platform=$BUILDPLATFORM golang:1.18-bullseye as builder
 
 # Create and change to the app directory.
 WORKDIR /app
@@ -13,7 +13,9 @@ RUN go mod download
 COPY . ./
 
 # Build the binary.
-RUN go build -v -o prudent cmd/prudent/main.go
+ARG TARGETOS
+ARG TARGETARCH
+RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go build -v -o prudent cmd/prudent/main.go
 
 # Use the official Debian slim image for a lean production container.
 # https://hub.docker.com/_/debian
