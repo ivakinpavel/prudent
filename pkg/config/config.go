@@ -7,7 +7,7 @@ import (
 )
 
 type Config struct {
-	PostgresHost     string `mapstructure:"POSTGRES_HOST" validate:"required,hostname"`
+	PostgresHost     string `mapstructure:"POSTGRES_HOST" validate:"required,gte=0,lte=80"`
 	PostgresPort     uint32 `mapstructure:"POSTGRES_PORT" validate:"required,gte=0,lte=65535"`
 	PostgresDBName   string `mapstructure:"POSTGRES_DB"  validate:"required,gte=0,lte=20"`
 	PostgresUsername string `mapstructure:"POSTGRES_USERNAME"  validate:"required,gte=0,lte=80"`
