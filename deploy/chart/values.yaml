@@ -1,4 +1,4 @@
-image: "docker.io/pavelivakin/prudent:main"
+image: "docker.io/pavelivakin/prudent:master"
 
 schedule: "0 0 * * *"
 
