@@ -27,7 +27,7 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -
 
 # Copy the binary to the production image from the builder stage.
 COPY --from=builder /app/prudent /app/prudent
-COPY --from=builder /app/.env.example /.env
+COPY --from=builder /app/.env.example /app/.env
 
 # Run the web service on container startup.
 CMD ["/app/prudent"]
